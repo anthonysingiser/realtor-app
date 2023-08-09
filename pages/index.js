@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Flex, Box, Text, Button } from '@chakra-ui/react';
+import { baseUrl, fetchApi } from '../utils/fetchApi';
+
 
 const Banner = ({ purpose, title1, title2, desc1, desc2, buttonText, linkName, imageUrl }) => (
     <Flex flexWrap="wrap" justifyContent="center" alignItems="center" m="10">
@@ -17,9 +19,11 @@ const Banner = ({ purpose, title1, title2, desc1, desc2, buttonText, linkName, i
     </Flex>
 )
 
-export default function Home() {
+export default function Home({ propertiesForSale, propertiesForRent }) {
+    
+    console.log(propertiesForRent, propertiesForSale)
     return (
-        <div>
+        <Box>
             <Banner 
                 purpose="RENT A HOME"
                 title1="Rental Homes for"
@@ -30,6 +34,9 @@ export default function Home() {
                 linkName="/search?purpose=for-rent"
                 imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/145426814/33973352624c48628e41f2ec460faba4"
             />
+            <Flex flexWrap="wrap">
+                {/* Fetch rental properties and map them */}
+            </Flex>
             <Banner 
                 purpose="Buy A HOME"
                 title1="Find, Buy & Own Your"
@@ -40,6 +47,19 @@ export default function Home() {
                 linkName="/search?purpose=for-sale"
                 imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/110993385/6a070e8e1bae4f7d8c1429bc303d2008"
             />
-        </div>
+                {/* Fetch for sale properties and map them */}
+        </Box>
     )
+}
+
+export async function getStaticProps() {
+    const propertyForSale = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6`)
+    const propertyForRent = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=6`)
+
+    return {
+        props: {
+            propertiesForSale: propertyForSale?.hits,
+            propertiesForRent: propertyForRent?.hits
+        }
+    }
 }
