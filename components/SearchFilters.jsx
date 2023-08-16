@@ -6,9 +6,9 @@ import Image from 'next/image';
 
 const SearchFilters = () => {
     return (
-        <div>
+        <Flex bg="gray.100" p="4" justifyContent="center" flexWrap="wrap">
             searchFilters
-        </div>
+        </Flex>
     )
 }
 
