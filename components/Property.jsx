@@ -5,7 +5,8 @@ import { FaBed, FaBath } from 'react-icons/fa';
 import { BsGridFill } from 'react-icons/bs';
 import { GoVerified } from 'react-icons/go';
 import millify from 'millify';
-import defaultImage from '../assets/images';
+
+const defaultImage = "https://webneel.com/daily/sites/default/files/images/daily/08-2014/2-real-estate-photography.jpg"
 
 const Property = ( { property: {coverPhoto, price, rentFrequency, rooms, title, baths, area, agency, isVerified, externalId} }) => (
     <Link href={`/property/${externalId} passHref`} >
