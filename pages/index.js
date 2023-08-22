@@ -20,10 +20,7 @@ const Banner = ({ purpose, title1, title2, desc1, desc2, buttonText, linkName, i
     </Flex>
 )
 
-export default function Home({ propertiesForSale, propertiesForRent }) {
-    
-    console.log(propertiesForRent, propertiesForSale)
-    return (
+const Home = ({ propertiesForSale, propertiesForRent }) => (
         <Box>
             <Banner 
                 purpose="RENT A HOME"
@@ -53,4 +50,17 @@ export default function Home({ propertiesForSale, propertiesForRent }) {
             </Flex>
         </Box>
     )
+
+export async function getStaticProps() {
+    const propertyForSale = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6`);
+    const propertyForRent = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=6`);
+
+    return {
+        props: {
+            propertiesForSale: propertyForSale?.hits,
+            propertiesForRent: propertyForRent?.hits,
+        },
+    }
 }
+
+export default Home
