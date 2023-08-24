@@ -12,7 +12,7 @@ const Property = ( { property: {coverPhoto, price, rentFrequency, rooms, title, 
     <Link href={`/property/${externalID}`} >
         <Flex flexwrap="wrap" w="420px" p="5" paddingTop="0" justifyContent="felx-start" cursor="pointer">
             <Box>
-                <Image src={coverPhoto ? coverPhoto.url : defaultImage} alt="house" />
+                <Image src={coverPhoto ? coverPhoto.url : defaultImage} width={500} height={300} alt="house" />
             </Box>
             <Box w="full">
                 <Flex paddingTop="2" alignItems="center" justifyContent="space-between">
