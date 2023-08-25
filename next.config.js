@@ -15,7 +15,8 @@ const nextConfig = {
                 port: '',
                 pathname: '/image/110993385/6a070e8e1bae4f7d8c1429bc303d2008'
             },
-        ]
+        ],
+        domains: ['bayut-production.s3.eu-central-1.amazonaws.com']
     }
 }
 
