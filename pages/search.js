@@ -7,6 +7,7 @@ import { baseUrl, fetchApi } from '@/utils/fetchApi';
 
 import SearchFilters from '../components/SearchFilters';
 import Property from '../components/Property';
+import noResultImage from '../assets/images/noResultImage.webp';
 
 const Search = ({ properties }) => {
     const [searchFilters, setSearchFilters] = useState(false)
@@ -38,9 +39,8 @@ const Search = ({ properties }) => {
         </Flex>
         {properties.length === 0 && (
             <Flex justifyContent="center" alignItems="center" flexDirection="column" marginTop="5" marginBottom="5">
-                {/*import image to use for noresult*/}
-                <Image alt="no result" src={noresult}/>
-                <Text fontSize="2xl" marginTop="3">No Results Found</Text> 
+                <Image alt="no result" src={noResultImage}/>
+                <Text fontSize="5xl" marginTop="3">No Results Found</Text> 
             </Flex>
         )}
         </Box>

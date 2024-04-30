@@ -6,6 +6,8 @@ import Image from 'next/image';
 
 import { filterData, getFilterValues } from '../utils/filterData'
 import { baseUrl, fetchApi } from '../utils/fetchApi';
+import noResultImage from '../assets/images/noResultImage.webp';
+
 
 const SearchFilters = () => {
     const [filters] = useState(filterData);
@@ -99,7 +101,7 @@ const SearchFilters = () => {
                   ))}
                   {!loading && !locationData?.length && (
                     <Flex justifyContent='center' alignItems='center' flexDir='column' marginTop='5' marginBottom='5' >
-                      <Image src={noresult} alt='' />
+                      <Image src={noResultImage} alt='No Results' />
                       <Text fontSize='xl' marginTop='3'>
                         Waiting to search!
                       </Text>
